@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             x:Class="WeatherApp.MainPage">
+
+    <StackLayout>
+        <Frame>
+            <Label Text="Weather service" HorizontalOptions="CenterAndExpand" FontSize="34" FontAttributes="Bold"/>
+        </Frame>
+
+
+        <CollectionView ItemsSource="{Binding WeatherList}">
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout  Orientation="Vertical" />
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout Padding="5">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <Grid Grid.Row="0" BackgroundColor="AntiqueWhite" >
+
+                                <Label Grid.Row="1" Grid.Column="0" FontAttributes="Bold" FontFamily="Lobster-Regular" Text="{Binding Source={x:Static sys:DateTime.Now}, StringFormat='{0:MMMM dd, yyyy}'}" />
+                            </Grid>
+
+                            <Grid Grid.Row="1" BackgroundColor="AntiqueWhite" >
+                                <Label Grid.Row="0" Grid.ColumnSpan="2" Text="Today" FontFamily="Lobster-Regular" VerticalOptions="Center" HorizontalOptions="Center" FontSize="15" FontAttributes="Bold"/>
+                                
+
+                                <Label Grid.Row="1" Grid.Column="1" Text="{Binding main.temp, StringFormat='{0:N0}° C'}" HorizontalOptions="CenterAndExpand" FontSize="20" FontAttributes="Bold"/>
+                                
+                            </Grid>
+
+                            <Grid Grid.Row="2" BackgroundColor="AntiqueWhite" Margin="0,5,5,0">
+                                <Image Source="cloudcover.png" Grid.Row="0" Grid.Column="3"  VerticalOptions="Center" HorizontalOptions="Center"/>
+                                <Label Grid.Row="1" Grid.Column="3" Text="{Binding clouds.all, StringFormat='{0:N0}%'}" VerticalOptions="Center" HorizontalOptions="Center"/>
+                                <Label Grid.Row="2" Grid.Column="3" Text="Cloud Cover" VerticalOptions="Center" HorizontalOptions="Center" FontAttributes="Bold"/>
+                                
+                                <Image Source="humidity.png" Grid.Row="0" Grid.Column="1"  VerticalOptions="Center" HorizontalOptions="Center"/>
+                                <Label Grid.Row="1" Grid.Column="1" Text="{Binding main.humidity, StringFormat='{0:N0}%'}" VerticalOptions="Center" HorizontalOptions="Center"/>
+                                <Label Grid.Row="2" Grid.Column="1" Text="Humidity" VerticalOptions="Center" HorizontalOptions="Center" FontAttributes="Bold"/>
+
+                                <Image Source="wind.png" Grid.Row="0" Grid.Column="0"  VerticalOptions="Center" HorizontalOptions="Center"/>
+                                <Label Grid.Row="1" Grid.Column="0" Text="{Binding wind.speed, StringFormat='{0:N0}km/h'}" VerticalOptions="Center" HorizontalOptions="Center"/>
+                                <Label Grid.Row="2" Grid.Column="0" Text="Wind" VerticalOptions="Center" HorizontalOptions="Center" FontAttributes="Bold"/>
+
+                                <Image Source="pressure.png" Grid.Row="0" Grid.Column="2"  VerticalOptions="Center" HorizontalOptions="Center"/>
+                                <Label Grid.Row="1" Grid.Column="2" Text="{Binding main.pressure, StringFormat='{0:N0}°'}" VerticalOptions="Center" HorizontalOptions="Center"/>
+                                <Label Grid.Row="2" Grid.Column="2" Text="Pressure" VerticalOptions="Center" HorizontalOptions="Center" FontAttributes="Bold"/>
+
+                              
+                            </Grid>
+
+                           
+
+                        </Grid>
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+
+
+    </StackLayout> 
+
+</ContentPage>
